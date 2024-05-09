@@ -10,16 +10,17 @@ namespace ClassLibraryExample
     public class Node
     {
         public string Data { get; set; }
+        public Node? Next { get; set; }
     }
 
     // The linked list class itself
     public class JesseLinkedList
     {
-        public Node Head { get; set; }
+        public Node? Head { get; set; }
 
         public JesseLinkedList()
         {
-            Head = new Node();
+            Head = null;
         }
 
         public string Get(int index)
@@ -29,7 +30,34 @@ namespace ClassLibraryExample
 
         public void Add(string item)
         {
-            Head = new Node { Data = item };
+            Node? oldHead = Head;
+
+            if (Head != null)
+            {
+                Node? pos = Head;
+
+                while (pos != null)
+                {
+
+                }
+            }
+
+
+            if (Head != null)
+            {
+                if (Head.Next == null)
+                {
+                    Head.Next = new Node() { Data = item };
+                } else
+                {
+                    // somehow traverse the nodes until it is null
+                }
+                
+            }
+            else
+            {
+                Head = new Node { Data = item };
+            }
         }
     }
 }
