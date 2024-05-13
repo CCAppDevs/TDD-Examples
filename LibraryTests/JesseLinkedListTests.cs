@@ -28,7 +28,7 @@ namespace LibraryTests
         {
             // arrange
             JesseLinkedList list = new JesseLinkedList();
-            Node expected = new Node() { Data = input };
+            Node expected = new Node(input);
 
             // act
             list.Add(input);

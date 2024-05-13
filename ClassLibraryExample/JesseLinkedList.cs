@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,10 @@ namespace ClassLibraryExample
     {
         public string Data { get; set; }
         public Node? Next { get; set; }
+
+        public Node(string data) {
+            Data = data;
+        }
     }
 
     // The linked list class itself
@@ -25,39 +30,25 @@ namespace ClassLibraryExample
 
         public string Get(int index)
         {
-            return Head.Data;
+            Node node = Head;
+            int counter = 0;
+
+            // search through the node list to find the item at the given index (if it exists).
+            while (counter != index)
+            {
+                node = node.Next;
+                counter++;
+            }
+
+            return node.Data;
         }
 
         public void Add(string item)
         {
-            Node? oldHead = Head;
+            Node newNode = new Node(item);
 
-            if (Head != null)
-            {
-                Node? pos = Head;
-
-                while (pos != null)
-                {
-
-                }
-            }
-
-
-            if (Head != null)
-            {
-                if (Head.Next == null)
-                {
-                    Head.Next = new Node() { Data = item };
-                } else
-                {
-                    // somehow traverse the nodes until it is null
-                }
-                
-            }
-            else
-            {
-                Head = new Node { Data = item };
-            }
+            newNode.Next = Head;
+            Head = newNode;
         }
     }
 }
