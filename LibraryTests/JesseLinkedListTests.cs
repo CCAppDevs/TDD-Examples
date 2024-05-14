@@ -15,8 +15,8 @@ namespace LibraryTests
             JesseLinkedList list = new JesseLinkedList();
 
             // act
-            list.Add(input);
-            string result = list.Get(1);
+            list.AddToBack(input);
+            string result = list.Get(0);
 
             // assert
             Assert.IsInstanceOfType(result, typeof(string));
@@ -31,7 +31,7 @@ namespace LibraryTests
             Node expected = new Node(input);
 
             // act
-            list.Add(input);
+            list.AddToBack(input);
 
             Node result = list.Head;
 
@@ -47,7 +47,7 @@ namespace LibraryTests
             JesseLinkedList list = new JesseLinkedList();
 
             // act
-            list.Add(input);
+            list.AddToBack(input);
             
             // assert
             Assert.IsInstanceOfType(list.Head, typeof(Node));
@@ -75,9 +75,9 @@ namespace LibraryTests
             JesseLinkedList list = new JesseLinkedList();
             
             // act
-            list.Add(one);
-            list.Add(two);
-            list.Add(three);
+            list.AddToBack(one);
+            list.AddToBack(two);
+            list.AddToBack(three);
 
             string? resultone = list.Get(0);
             string? resulttwo = list.Get(1);

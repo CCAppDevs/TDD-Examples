@@ -43,7 +43,35 @@ namespace ClassLibraryExample
             return node.Data;
         }
 
-        public void Add(string item)
+        public void AddToBack(string item)
+        {
+            // create a new node to hold our new item
+            Node newNode = new Node(item);
+
+            if (Head == null)
+            {
+                Head = newNode;
+                return;
+            }
+
+            Node temp = FindEndOfList();
+
+            temp.Next = newNode;
+        }
+
+        public Node FindEndOfList()
+        {
+            Node position = Head;
+
+            while (position.Next != null)
+            {
+                position = position.Next;
+            }
+
+            return position;
+        }
+
+        public void AddToFront(string item)
         {
             Node newNode = new Node(item);
 
