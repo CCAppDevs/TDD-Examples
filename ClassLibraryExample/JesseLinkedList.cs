@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 namespace ClassLibraryExample
 {
     // Node class for a linked list item
-    public class Node
+    public class Node<T>
     {
-        public string Data { get; set; }
-        public Node? Next { get; set; }
+        public T Data { get; set; }
+        public Node<T>? Next { get; set; }
 
-        public Node(string data) {
+        public Node(T data) {
             Data = data;
         }
     }
 
     // The linked list class itself
-    public class JesseLinkedList
+    public class JesseLinkedList<T>
     {
         public Node? Head { get; set; }
 
@@ -69,6 +69,42 @@ namespace ClassLibraryExample
             }
 
             return position;
+        }
+
+        public Node FindMiddleBrute()
+        {
+            Node ptr = Head;
+
+            int counter = 0;
+
+            while (ptr != null)
+            {
+                ptr = ptr.Next;
+                counter++;
+            }
+
+            ptr = Head;
+
+            for (int i = 0; i < counter/2; i++)
+            {
+                ptr = ptr.Next;
+            }
+
+            return ptr;
+        }
+
+        public Node FindMiddleTortiseHare()
+        {
+            Node slow_ptr = Head;
+            Node fast_ptr = Head;
+
+            while (fast_ptr != null && fast_ptr.Next != null)
+            {
+                slow_ptr = slow_ptr.Next;
+                fast_ptr = fast_ptr.Next.Next;
+            }
+
+            return slow_ptr;
         }
 
         public void AddToFront(string item)
