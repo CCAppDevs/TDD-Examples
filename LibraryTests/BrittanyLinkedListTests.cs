@@ -90,6 +90,27 @@ namespace LibraryTests
             Assert.AreEqual(resultThree, three);
         }
 
+        [TestMethod]
+        [DataRow(1, 2, 3)]
+        [DataRow(10, 20, 30)]
+        [DataRow(-1, 20, -3)]
+
+        public void WhenLinkedListGetsIntegers_IntegersAreReturned(int one, int two, int three)
+        {
+            // arrange
+            BrittanyLinkedList list = new BritanyLinkedList();
+
+
+            // act
+            list.AddToBack(one);
+            list.AddToBack(two);
+            list.AddToBack(three);
+
+            int result = list.Get(0);
+            // assert
+            Assert.AreEqual(result, one);
+
+        }
 
     }
 }
