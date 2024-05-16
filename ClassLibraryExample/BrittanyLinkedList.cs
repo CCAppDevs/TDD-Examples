@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ClassLibraryExample
 {
     // Node class for linked list item
-    public class BrittanyNode
+    public class BrittanyNode<T>
     {
         public T Data { get; set; }
         public BrittanyNode<T>? Next { get; set; }
@@ -29,10 +29,10 @@ namespace ClassLibraryExample
             Head = null;
         }
 
-        public string Get(int index)
+        public T Get(int index)
         {
 
-            BrittanyNode node = Head;
+            BrittanyNode<T> node = Head;
             int counter = 0;
 
             // search through the node list to find the item at the given index (if it exists)
@@ -51,10 +51,10 @@ namespace ClassLibraryExample
             return node.Data;
         }
 
-        public void AddToBack(string item)
+        public void AddToBack(T item)
         {
             // create a new node to hold our new item
-            BrittanyNode newNode = new BrittanyNode(item);
+            BrittanyNode<T> newNode = new BrittanyNode<T>(item);
 
             if (Head == null)
             {
@@ -62,17 +62,17 @@ namespace ClassLibraryExample
                 return;
             }
 
-            BrittanyNode temp = FindEndOfList();
+            BrittanyNode<T> temp = FindEndOfList();
 
             // add the new item to the end
             temp.Next = newNode;
 
         }
 
-        public BrittanyNode FindEndOfList()
+        public BrittanyNode<T> FindEndOfList()
         {
             //find the end
-            BrittanyNode position = Head;
+            BrittanyNode<T> position = Head;
             while (position.Next != null)
             {
                 //take current position and move to position next
@@ -81,9 +81,9 @@ namespace ClassLibraryExample
             return position;
         }
 
-        public BrittanyNode FindMiddleBrute()
+        public BrittanyNode<T> FindMiddleBrute()
         {
-            BrittanyNode ptr = Head;
+            BrittanyNode<T> ptr = Head;
             int counter = 0;
 
             while (ptr != null)
@@ -102,10 +102,10 @@ namespace ClassLibraryExample
             return ptr;
         }
 
-        public BrittanyNode FindMiddleTortoiseHare()
+        public BrittanyNode<T> FindMiddleTortoiseHare()
         {
-            BrittanyNode slow_ptr = Head;
-            BrittanyNode fast_ptr = Head;
+            BrittanyNode<T> slow_ptr = Head;
+            BrittanyNode<T> fast_ptr = Head;
 
             while (fast_ptr != null & fast_ptr.Next != null)
             {
@@ -116,9 +116,9 @@ namespace ClassLibraryExample
             return slow_ptr;
         }
 
-        public void AddToFront(string item)
+        public void AddToFront(T item)
         {
-            BrittanyNode newNode = new BrittanyNode(item);
+            BrittanyNode<T> newNode = new BrittanyNode<T>(item);
 
             newNode.Next = Head;
             Head = newNode;

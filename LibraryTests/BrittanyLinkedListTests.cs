@@ -19,7 +19,7 @@ namespace LibraryTests
         public void LinkedListAcceptsStrings_ReturnsStringData(string input)
         {
             // arrange
-            BrittanyLinkedList list = new();
+            BrittanyLinkedList<string> list = new();
             // act
             list.AddToBack(input);
             string result = list.Get(0);
@@ -34,11 +34,11 @@ namespace LibraryTests
         public void LinkedListAcceptsAnItem_HeadReturnsTheItem(string input)
         {
             //arrange
-            BrittanyLinkedList list = new BrittanyLinkedList();
-            BrittanyNode expected = new BrittanyNode(input);
+            BrittanyLinkedList<string> list = new BrittanyLinkedList<string>();
+            BrittanyNode<string> expected = new BrittanyNode<string>(input);
             //act
             list.AddToBack(input);
-            BrittanyNode result = list.Head;
+            BrittanyNode<string> result = list.Head;
             //assert
             Assert.AreEqual(result.Data, expected.Data);
         }
@@ -48,21 +48,21 @@ namespace LibraryTests
         public void LinkedListAcceptsAnItem_CreatesANodeInTheHead(string input)
         {
             //arrange
-            BrittanyLinkedList list = new();
+            BrittanyLinkedList<string> list = new();
             //act
             list.AddToBack(input);
 
             //assert
-            Assert.IsInstanceOfType(list.Head, typeof(BrittanyNode));
+            Assert.IsInstanceOfType(list.Head, typeof(BrittanyNode<string>));
         }
 
         [TestMethod]
         public void WhenLinkListIsCreated_HeadIsNull()
         {
             //arrange
-            BrittanyLinkedList list = new();
+            BrittanyLinkedList<string> list = new();
             //act
-            BrittanyNode? result = list.Head;
+            BrittanyNode<string>? result = list.Head;
             //assert
             Assert.IsNull(result);
         }
@@ -74,7 +74,7 @@ namespace LibraryTests
         public void WhenLinkListGetsMultipleItems_ItemsAreInCorrectPosition(string one, string two, string three)
         {
             //arrange
-            BrittanyLinkedList list = new BrittanyLinkedList();
+            BrittanyLinkedList<string> list = new BrittanyLinkedList<string>();
             list.AddToBack(one);
             list.AddToBack(two);
             list.AddToBack(three);
@@ -98,7 +98,7 @@ namespace LibraryTests
         public void WhenLinkedListGetsIntegers_IntegersAreReturned(int one, int two, int three)
         {
             // arrange
-            BrittanyLinkedList list = new BritanyLinkedList();
+            BrittanyLinkedList<int> list = new BrittanyLinkedList<int>();
 
 
             // act
@@ -109,6 +109,29 @@ namespace LibraryTests
             int result = list.Get(0);
             // assert
             Assert.AreEqual(result, one);
+
+        }
+
+        [TestMethod]
+        [DataRow(true, false, true, true)]
+        public void WhenLinkedListGetsBooleans_BooleansAreReturned(bool one, bool two, bool three, bool four)
+        {
+            BrittanyLinkedList<bool> list = new BrittanyLinkedList<bool>();
+            list.AddToBack(one);
+            list.AddToBack(two);
+            list.AddToBack(three);
+            list.AddToBack(four);
+
+            bool result = list.Get(0);
+            bool result2 = list.Get(1);
+            bool result3 = list.Get(2);
+            bool result4 = list.Get(3);
+
+            Assert.AreEqual(result, one);
+            Assert.AreEqual(result2, two);
+            Assert.AreEqual(result3, three);
+            Assert.AreEqual(result4, four);
+
 
         }
 
